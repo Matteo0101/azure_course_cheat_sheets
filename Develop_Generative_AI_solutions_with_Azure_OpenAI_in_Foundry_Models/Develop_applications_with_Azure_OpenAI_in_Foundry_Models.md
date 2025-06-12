@@ -1,25 +1,25 @@
-# Azure OpenAI - Guida Completa
+# Azure OpenAI - Complete Guide
 
-## PROBLEMA
-Hai bisogno di creare un'applicazione che sfrutti modelli LLM (Large Language Models) per generare testo, codice o immagini, oppure calcolare embeddings o trascrivere audio. Come puoi farlo usando Azure OpenAI?
+## PROBLEM
+You need to create an application that leverages LLM (Large Language Models) to generate text, code, or images, or to calculate embeddings or transcribe audio. How can you do this using Azure OpenAI?
 
-## SOLUZIONE
-Utilizza il servizio Azure OpenAI per accedere e gestire modelli come gpt-4, gpt-35-turbo, text-embedding-ada, dall-e, whisper, ecc.
+## SOLUTION
+Use the Azure OpenAI service to access and manage models like gpt-4, gpt-35-turbo, text-embedding-ada, dall-e, whisper, etc.
 
-## COMPONENTI NECESSARI
+## REQUIRED COMPONENTS
 
-| Componente | Descrizione |
-|------------|-------------|
-| Azure OpenAI Resource | Risorsa principale da creare nel portale o via CLI |
-| Azure CLI / Azure Portal | Per creare e gestire risorse e deployment dei modelli |
-| API Key e Endpoint | Per autenticarsi e fare chiamate REST o tramite SDK |
-| Modello da deployare | Es: gpt-35-turbo, text-embedding-ada, dall-e, whisper |
-| Deployment Name | Alias del modello per l'applicazione |
-| SDK (Python: openai) | Per integrare i modelli nel tuo codice (chat, completions, embeddings, ecc.) |
+| Component | Description |
+|-----------|-------------|
+| Azure OpenAI Resource | Main resource to create in the portal or via CLI |
+| Azure CLI / Azure Portal | To create and manage resources and model deployments |
+| API Key and Endpoint | To authenticate and make REST calls or via SDK |
+| Model to deploy | E.g.: gpt-35-turbo, text-embedding-ada, dall-e, whisper |
+| Deployment Name | Model alias for the application |
+| SDK (Python: openai) | To integrate models into your code (chat, completions, embeddings, etc.) |
 
-## PROCEDURA OPERATIVA
+## OPERATIONAL PROCEDURE
 
-### 1. Creare la risorsa Azure OpenAI (CLI)
+### 1. Create Azure OpenAI Resource (CLI)
 ```bash
 az cognitiveservices account create \
 -n MyOpenAIResource \
@@ -30,7 +30,7 @@ az cognitiveservices account create \
 --subscription subscriptionID
 ```
 
-### 2. Deploy di un modello (es. GPT-35 Turbo)
+### 2. Deploy a Model (e.g., GPT-35 Turbo)
 ```bash
 az cognitiveservices account deployment create \
    -g OAIResourceGroup \
@@ -43,7 +43,7 @@ az cognitiveservices account deployment create \
    --sku-capacity 1
 ```
 
-### 3. Utilizzo tramite API (REST – esempio chat completions)
+### 3. Usage via API (REST – chat completions example)
 ```bash
 curl https://<ENDPOINT>.openai.azure.com/openai/deployments/<DEPLOYMENT_NAME>/chat/completions?api-version=2023-03-15-preview \
   -H "Content-Type: application/json" \
@@ -56,7 +56,7 @@ curl https://<ENDPOINT>.openai.azure.com/openai/deployments/<DEPLOYMENT_NAME>/ch
 }'
 ```
 
-### 4. Utilizzo tramite Python SDK
+### 4. Usage via Python SDK
 ```python
 from openai import AzureOpenAI
 
@@ -76,43 +76,46 @@ response = client.chat.completions.create(
 print(response.choices[0].message.content)
 ```
 
-## TIPI DI MODELLI DISPONIBILI
+## AVAILABLE MODEL TYPES
 
-| Categoria | Modello (esempio) | Descrizione |
-|-----------|-------------------|-------------|
-| LLM Chat | gpt-4, gpt-35-turbo | Generazione testo/conversazioni/chatbot |
-| Codice | gpt-35-turbo | Code generation |
-| Embedding | text-embedding-ada:002 | Trasforma testo in vettori numerici |
-| Immagini | dall-e | Genera immagini da prompt (preview) |
-| Speech-to-text | whisper | Trascrive audio in testo |
-| Text-to-speech | text-to-speech | Genera voce da testo |
+| Category | Model (example) | Description |
+|----------|-----------------|-------------|
+| LLM Chat | gpt-4, gpt-35-turbo | Text generation/conversations/chatbots |
+| Code | gpt-35-turbo | Code generation |
+| Embedding | text-embedding-ada:002 | Transforms text into numerical vectors |
+| Images | dall-e | Generates images from prompts (preview) |
+| Speech-to-text | whisper | Transcribes audio to text |
+| Text-to-speech | text-to-speech | Generates voice from text |
 
-## PERMESSI NECESSARI
+## REQUIRED PERMISSIONS
 
-| Ruolo Azure | Permessi |
-|-------------|----------|
-| Cognitive Services OpenAI User | Visualizzazione risorsa, playground |
-| Cognitive Services OpenAI Contributor | Creazione deployment |
+| Azure Role | Permissions |
+|------------|-------------|
+| Cognitive Services OpenAI User | Resource viewing, playground |
+| Cognitive Services OpenAI Contributor | Deployment creation |
 
-## CASI D'USO COMUNI
+## COMMON USE CASES
 
-| Obiettivo | Modello consigliato | Endpoint |
+| Objective | Recommended Model | Endpoint |
 |-----------|-------------------|----------|
 | Chatbot / Assistant | gpt-35-turbo | chat/completions |
-| Motore di ricerca semantico | text-embedding-ada:002 | embeddings |
-| Generazione codice | gpt-4 o gpt-35-turbo | completions |
-| Analisi similitudini tra testi | text-similarity-* | embeddings |
-| Generazione immagini | dall-e | images/generations |
-| Trascrizione vocale | whisper | audio/transcriptions |
+| Semantic search engine | text-embedding-ada:002 | embeddings |
+| Code generation | gpt-4 or gpt-35-turbo | completions |
+| Text similarity analysis | text-similarity-* | embeddings |
+| Image generation | dall-e | images/generations |
+| Voice transcription | whisper | audio/transcriptions |
 
-## DOMANDE D'ESAME SIMULATE
+## SIMULATED EXAM QUESTIONS
 
-1. **Hai bisogno di un chatbot aziendale su sito web. Quale modello Azure OpenAI useresti e come lo configureresti?**
+1. **You need an enterprise chatbot for a website. Which Azure OpenAI model would you use and how would you configure it?**
 
-2. **Devi implementare una ricerca semantica per confrontare descrizioni prodotto. Che modello usi?**
+2. **You need to implement semantic search to compare product descriptions. Which model do you use?**
 
-3. **Vuoi generare automaticamente codice Python a partire da prompt naturali. Quale modello e endpoint?**
+3. **You want to automatically generate Python code from natural language prompts. Which model and endpoint?**
 
-4. **Vuoi integrare l'AI nel tuo codice Python: quali parametri sono necessari per connetterti?**
+4. **You want to integrate AI into your Python code: what parameters are needed to connect?**
 
-5. **Quali ruoli RBAC sono richiesti per creare un deployment di un modello GPT in azienda?**
+5. **What RBAC roles are required to create a GPT model deployment in an enterprise?**
+
+
+
