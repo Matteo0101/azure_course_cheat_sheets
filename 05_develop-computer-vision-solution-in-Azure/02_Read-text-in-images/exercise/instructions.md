@@ -1,4 +1,4 @@
-# Read text in images
+# [Read text in images](https://microsoftlearning.github.io/mslearn-ai-vision/Instructions/Labs/02-ocr.html)
 
 Optical character recognition (OCR) is a subset of computer vision that deals with reading text in images and documents. The Azure AI Vision Image Analysis service provides an API for reading text, which you’ll explore in this exercise.
 
