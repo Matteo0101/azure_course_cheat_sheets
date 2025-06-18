@@ -1,1 +1,1 @@
-# azure_course_cheet_sheets
+Repository created by the AI & Data team based in Cagliari, available to all colleagues.
