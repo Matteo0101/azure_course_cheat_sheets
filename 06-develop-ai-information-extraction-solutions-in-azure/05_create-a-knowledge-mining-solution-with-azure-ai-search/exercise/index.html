@@ -1,0 +1,5064 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://sitename.example/06-develop-ai-information-extraction-solutions-in-azure/05_create-a-knowledge-mining-solution-with-azure-ai-search/exercise/">
+      
+      
+        <link rel="prev" href="../../04_extract-data-from-forms-with-azure-document-intelligence/learn/">
+      
+      
+        <link rel="next" href="../learn/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>Create a knowledge mining solution - Azure AI-102 Learning Path Cheat Sheets</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#create-a-knowledge-mining-solution" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Azure AI-102 Learning Path Cheat Sheets" class="md-header__button md-logo" aria-label="Azure AI-102 Learning Path Cheat Sheets" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.05 4.24 6.56 18.05 2 18l5.09-8.76zm.7 1.09L22 19.76H6.74l9.3-1.66-4.87-5.79z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Azure AI-102 Learning Path Cheat Sheets
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Create a knowledge mining solution
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Azure AI-102 Learning Path Cheat Sheets" class="md-nav__button md-logo" aria-label="Azure AI-102 Learning Path Cheat Sheets" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.05 4.24 6.56 18.05 2 18l5.09-8.76zm.7 1.09L22 19.76H6.74l9.3-1.66-4.87-5.79z"/></svg>
+
+    </a>
+    Azure AI-102 Learning Path Cheat Sheets
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Welcome to MkDocs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    01 get started with zure ai service
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            01 get started with zure ai service
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    01 Plan and Prepare to develop AI Solution on azure
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            01 Plan and Prepare to develop AI Solution on azure
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../01-get-started-with-zure-ai-service/01-Plan_and_Prepare_to_develop_AI_Solution_on_azure/learn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Azure AI Solution Design Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    02 Create and consume Azure AI service
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            02 Create and consume Azure AI service
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../01-get-started-with-zure-ai-service/02-Create_and_consume_Azure_AI_service/learn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Azure AI Services Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    03 Secure Azure AI Service
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            03 Secure Azure AI Service
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../01-get-started-with-zure-ai-service/03-Secure_Azure_AI_Service/learn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Azure AI Services Security Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    04 Monitor Azure AI services
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            04 Monitor Azure AI services
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../01-get-started-with-zure-ai-service/04-Monitor_Azure_AI_services/learn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Learn
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    05 Deploy Azure AI services in containers
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            05 Deploy Azure AI services in containers
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../01-get-started-with-zure-ai-service/05-Deploy_Azure_AI_services_in_containers/learn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Azure AI Services Containers Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    06 Use AI responsibility with Azure AI Foundry Content Safety
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_6">
+            <span class="md-nav__icon md-icon"></span>
+            06 Use AI responsibility with Azure AI Foundry Content Safety
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../01-get-started-with-zure-ai-service/06-Use_AI_responsibility_with_Azure_AI_Foundry_Content_Safety/learn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Azure AI Foundry Content Safety Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    02 develop generative ai apps in azure
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            02 develop generative ai apps in azure
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    01 plan and prepare to develop ai solutions on azure
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            01 plan and prepare to develop ai solutions on azure
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02-develop-generative-ai-apps-in-azure/01-plan-and-prepare-to-develop-ai-solutions-on-azure/exercise/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Prepare for an AI development project
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02-develop-generative-ai-apps-in-azure/01-plan-and-prepare-to-develop-ai-solutions-on-azure/learn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Plan and create an Azure AI solution
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    02 choose and deploy models from the model catalog in azure ai foundry portal
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            02 choose and deploy models from the model catalog in azure ai foundry portal
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02-develop-generative-ai-apps-in-azure/02-choose-and-deploy-models-from-the-model-catalog-in-azure-ai-foundry-portal/exercise/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Choose and deploy a language model
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02-develop-generative-ai-apps-in-azure/02-choose-and-deploy-models-from-the-model-catalog-in-azure-ai-foundry-portal/learn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Explore foundation models and capabilities in Azure AI Foundry
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    03 develop an ai app with the azure ai foundry sdk
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            03 develop an ai app with the azure ai foundry sdk
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02-develop-generative-ai-apps-in-azure/03-develop-an-ai-app-with-the-azure-ai-foundry-sdk/exercise-microsoft/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create a generative AI chat app
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02-develop-generative-ai-apps-in-azure/03-develop-an-ai-app-with-the-azure-ai-foundry-sdk/learn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    What is the Azure AI Foundry SDK?
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    04 get started with prompt flow to develop language model apps in the azure ai foundry
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            04 get started with prompt flow to develop language model apps in the azure ai foundry
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02-develop-generative-ai-apps-in-azure/04-get-started-with-prompt-flow-to-develop-language-model-apps-in-the-azure-ai-foundry/exercise/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Exercise
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02-develop-generative-ai-apps-in-azure/04-get-started-with-prompt-flow-to-develop-language-model-apps-in-the-azure-ai-foundry/learn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Development Lifecycle of a Large Language Model (LLM) Application
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    05 develop a rag based solution with your own data using azure ai foundry
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            05 develop a rag based solution with your own data using azure ai foundry
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02-develop-generative-ai-apps-in-azure/05-develop-a-rag-based-solution-with-your-own-data-using-azure-ai-foundry/exercise-microsoft/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create a generative AI app that uses your own data
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02-develop-generative-ai-apps-in-azure/05-develop-a-rag-based-solution-with-your-own-data-using-azure-ai-foundry/learn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Understand How to Ground Your Language Model
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    06 fine tune a language model with azure ai foundry
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            06 fine tune a language model with azure ai foundry
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02-develop-generative-ai-apps-in-azure/06-fine-tune-a-language-model-with-azure-ai-foundry/exercise-microsoft/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Fine-tune a language model
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02-develop-generative-ai-apps-in-azure/06-fine-tune-a-language-model-with-azure-ai-foundry/learn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Understand When to Fine-Tune a Language Model
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_7" id="__nav_3_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    07 implement a responsible generative ai solution in azure ai foundry
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_7">
+            <span class="md-nav__icon md-icon"></span>
+            07 implement a responsible generative ai solution in azure ai foundry
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02-develop-generative-ai-apps-in-azure/07-implement-a-responsible-generative-ai-solution-in-azure-ai-foundry/exercise/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Apply content filters to prevent the output of harmful content
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02-develop-generative-ai-apps-in-azure/07-implement-a-responsible-generative-ai-solution-in-azure-ai-foundry/learn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Plan a Responsible Generative AI Solution
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_8" id="__nav_3_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    08 evaluate generative ai performance in azure ai foundry portal
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_8">
+            <span class="md-nav__icon md-icon"></span>
+            08 evaluate generative ai performance in azure ai foundry portal
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02-develop-generative-ai-apps-in-azure/08-evaluate-generative-ai-performance-in-azure-ai-foundry-portal/exercise/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Evaluate generative AI model performance
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02-develop-generative-ai-apps-in-azure/08-evaluate-generative-ai-performance-in-azure-ai-foundry-portal/learn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Learn
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    03 develop ai agents on azure
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            03 develop ai agents on azure
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    01 get started with ai agent development on azure
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            01 get started with ai agent development on azure
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../03-develop-ai-agents-on-azure/01-get-started-with-ai-agent-development-on-azure/exercise/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    01 Exercise 🛠️: Explore AI Agent Development 🤖
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../03-develop-ai-agents-on-azure/01-get-started-with-ai-agent-development-on-azure/learn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    01 Get started with AI agent development on Azure
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    02 develop an ai agent with azure ai foundry agent service
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            02 develop an ai agent with azure ai foundry agent service
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../03-develop-ai-agents-on-azure/02-develop-an-ai-agent-with-azure-ai-foundry-agent-service/exercise/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    02 Exercise 🛠️: Build an AI Agent with Code Interpreter
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../03-develop-ai-agents-on-azure/02-develop-an-ai-agent-with-azure-ai-foundry-agent-service/learn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    02 Develop an AI agent with Azure AI Foundry Agent Service
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    03 integrate custom tools into your agent
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            03 integrate custom tools into your agent
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../03-develop-ai-agents-on-azure/03-integrate-custom-tools-into-your-agent/exercise/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    03 Exercise 🛠️: Use a Custom Function in an AI Agent
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../03-develop-ai-agents-on-azure/03-integrate-custom-tools-into-your-agent/learn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    03 Integrate Custom Tools Into Your Agent
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    04 develop an ai agent with semantic kernel
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            04 develop an ai agent with semantic kernel
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../03-develop-ai-agents-on-azure/04-develop-an-ai-agent-with-semantic-kernel/exercise/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    04 Exercise 🛠️: Develop an Azure AI Agent with the Semantic Kernel SDK
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../03-develop-ai-agents-on-azure/04-develop-an-ai-agent-with-semantic-kernel/learn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    04 Develop an AI agent with Semantic Kernel
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    05 orchestrate a multi agent solution using semantic kernel
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            05 orchestrate a multi agent solution using semantic kernel
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../03-develop-ai-agents-on-azure/05-orchestrate-a-multi-agent-solution-using-semantic-kernel/exercise/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    05 Exercise 🛠️: Develop a Multi-Agent Solution
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../03-develop-ai-agents-on-azure/05-orchestrate-a-multi-agent-solution-using-semantic-kernel/learn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    05 Orchestrate a multi-agent solution using Semantic Kernel
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    04 develop natural language solutions in azure
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            04 develop natural language solutions in azure
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_1" id="__nav_5_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    01 Analyze text with Azure AI Language
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_1">
+            <span class="md-nav__icon md-icon"></span>
+            01 Analyze text with Azure AI Language
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../04-develop-natural-language-solutions-in-azure/01-Analyze-text-with-Azure-AI-Language/exercise/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Exercise
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../04-develop-natural-language-solutions-in-azure/01-Analyze-text-with-Azure-AI-Language/learn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Azure AI Language - Complete Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    02 Create question answering solutions with Azure AI Language
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            02 Create question answering solutions with Azure AI Language
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../04-develop-natural-language-solutions-in-azure/02-Create-question-answering-solutions-with-Azure-AI-Language/exercise/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Azure AI Language - Question Answering Solution
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../04-develop-natural-language-solutions-in-azure/02-Create-question-answering-solutions-with-Azure-AI-Language/learn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Azure AI Language - Question Answering Solutions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    03 Build a conversational language understanding model
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            03 Build a conversational language understanding model
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../04-develop-natural-language-solutions-in-azure/03-Build-a-conversational-language-understanding-model/exercise/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Azure AI Language - Create a Language Understanding Model
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../04-develop-natural-language-solutions-in-azure/03-Build-a-conversational-language-understanding-model/learn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Azure AI Language - Conversational Language Understanding (CLU)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4" id="__nav_5_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    04 Create a custom text classification solution
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4">
+            <span class="md-nav__icon md-icon"></span>
+            04 Create a custom text classification solution
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../04-develop-natural-language-solutions-in-azure/04-Create-a-custom-text-classification-solution/exercise/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Custom Text Classification Lab 🧪 (Azure AI Language Service)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../04-develop-natural-language-solutions-in-azure/04-Create-a-custom-text-classification-solution/learn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Custom Text Classification with Azure AI Language Service 🌐
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_5" id="__nav_5_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    05 Custom named entity recognition
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_5">
+            <span class="md-nav__icon md-icon"></span>
+            05 Custom named entity recognition
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../04-develop-natural-language-solutions-in-azure/05-Custom-named-entity-recognition/exercise/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Extract Custom Entities with Azure AI Language Service 🔍
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../04-develop-natural-language-solutions-in-azure/05-Custom-named-entity-recognition/learn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Custom Named Entity Recognition (Custom NER) 📄 (Azure AI Language Service)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_6" id="__nav_5_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    06 Translate text with Azure AI Translator service
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_6">
+            <span class="md-nav__icon md-icon"></span>
+            06 Translate text with Azure AI Translator service
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../04-develop-natural-language-solutions-in-azure/06-Translate-text-with-Azure-AI-Translator-service/exercise/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Text Translation with Azure AI Translator 🌐
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../04-develop-natural-language-solutions-in-azure/06-Translate-text-with-Azure-AI-Translator-service/learn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Learn
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_7" id="__nav_5_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    07 Create speech enabled apps with Azure AI services
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_7">
+            <span class="md-nav__icon md-icon"></span>
+            07 Create speech enabled apps with Azure AI services
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../04-develop-natural-language-solutions-in-azure/07-Create-speech-enabled-apps-with-Azure-AI-services/exercise/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Azure AI Speech Service Implementation Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../04-develop-natural-language-solutions-in-azure/07-Create-speech-enabled-apps-with-Azure-AI-services/learn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🧠 Speech Recognition and Synthesis with Azure AI Speech
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_8" id="__nav_5_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    08 Translate speech with the Azure AI Speech service
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_8">
+            <span class="md-nav__icon md-icon"></span>
+            08 Translate speech with the Azure AI Speech service
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../04-develop-natural-language-solutions-in-azure/08-Translate-speech-with-the-Azure-AI-Speech-service/exercise/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Azure AI Speech Translation Setup Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../04-develop-natural-language-solutions-in-azure/08-Translate-speech-with-the-Azure-AI-Speech-service/learn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Azure AI Speech Translation Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_9" id="__nav_5_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    09 Develop an audio enabled generative AI application
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_9">
+            <span class="md-nav__icon md-icon"></span>
+            09 Develop an audio enabled generative AI application
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../04-develop-natural-language-solutions-in-azure/09-Develop-an-audio-enabled-generative-AI-application/exercise/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Azure AI Foundry Exercise Summary
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../04-develop-natural-language-solutions-in-azure/09-Develop-an-audio-enabled-generative-AI-application/learn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Azure Multimodal Chat Application Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    05 develop computer vision solution in azure
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            05 develop computer vision solution in azure
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_1" id="__nav_6_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    01 Analyze images
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_1">
+            <span class="md-nav__icon md-icon"></span>
+            01 Analyze images
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../05-develop-computer-vision-solution-in-azure/01_Analyze-images/learn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🎯 Azure AI Vision Image Analysis Study Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_2" id="__nav_6_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    02 Read text in images
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_2">
+            <span class="md-nav__icon md-icon"></span>
+            02 Read text in images
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../05-develop-computer-vision-solution-in-azure/02_Read-text-in-images/learn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    📖 Optical Character Recognition (OCR) with Azure AI Vision
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_3" id="__nav_6_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    03 Detect analyze and recognize faces
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_3">
+            <span class="md-nav__icon md-icon"></span>
+            03 Detect analyze and recognize faces
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../05-develop-computer-vision-solution-in-azure/03_Detect-analyze-and-recognize-faces/learn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    👤 Face Detection, Analysis, and Recognition Solution (Azure AI Vision Face API)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_4" id="__nav_6_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    04 Classify images
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_4">
+            <span class="md-nav__icon md-icon"></span>
+            04 Classify images
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../05-develop-computer-vision-solution-in-azure/04_Classify-images/learn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🎨 Image Classification Solution (Azure AI Custom Vision)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_5" id="__nav_6_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    05 Detect objects in images
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_5">
+            <span class="md-nav__icon md-icon"></span>
+            05 Detect objects in images
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../05-develop-computer-vision-solution-in-azure/05_Detect-objects-in-images/learn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Azure AI Custom Vision - Object Detection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_6" id="__nav_6_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    06 Analyze video
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_6">
+            <span class="md-nav__icon md-icon"></span>
+            06 Analyze video
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../05-develop-computer-vision-solution-in-azure/06_Analyze-video/learn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Azure Video Indexer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_7" id="__nav_6_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    07 Develop a vision enabled generative AI application
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_7">
+            <span class="md-nav__icon md-icon"></span>
+            07 Develop a vision enabled generative AI application
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../05-develop-computer-vision-solution-in-azure/07_Develop-a-vision-enabled-generative-AI-application/learn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Service: Azure AI Foundry – Multimodal Generative AI 🤖🖼️
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_8" id="__nav_6_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    08 Generate images with AI
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_8">
+            <span class="md-nav__icon md-icon"></span>
+            08 Generate images with AI
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../05-develop-computer-vision-solution-in-azure/08_Generate-images-with-AI/learn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Service: Azure AI Foundry – Image Generation 🧠🎨
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    06 develop ai information extraction solutions in azure
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            06 develop ai information extraction solutions in azure
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_1" id="__nav_7_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    01 create a multimodal analysis solution with azure ai content understanding
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_1">
+            <span class="md-nav__icon md-icon"></span>
+            01 create a multimodal analysis solution with azure ai content understanding
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_create-a-multimodal-analysis-solution-with-azure-ai-content-understanding/exercise/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Extract information from multimodal content
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_create-a-multimodal-analysis-solution-with-azure-ai-content-understanding/learn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Azure AI Content Understanding
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_2" id="__nav_7_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    02 create an azure ai content understanding client application
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_2">
+            <span class="md-nav__icon md-icon"></span>
+            02 create an azure ai content understanding client application
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02_create-an-azure-ai-content-understanding-client-application/learn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Prepare to Use the AI Content Understanding REST API
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    03 use prebuilt document intelligence models
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3">
+            <span class="md-nav__icon md-icon"></span>
+            03 use prebuilt document intelligence models
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03_use-prebuilt-document-intelligence-models/learn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Understand Prebuilt Models
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_4" id="__nav_7_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    04 extract data from forms with azure document intelligence
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_4">
+            <span class="md-nav__icon md-icon"></span>
+            04 extract data from forms with azure document intelligence
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_extract-data-from-forms-with-azure-document-intelligence/exercise/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Exercise
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_extract-data-from-forms-with-azure-document-intelligence/learn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Azure Document Intelligence
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_7_5" id="__nav_7_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    05 create a knowledge mining solution with azure ai search
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7_5">
+            <span class="md-nav__icon md-icon"></span>
+            05 create a knowledge mining solution with azure ai search
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Create a knowledge mining solution
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Create a knowledge mining solution
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#create-azure-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create Azure resources
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Create Azure resources">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#important-your-azure-resources-should-be-created-in-the-same-location" class="md-nav__link">
+    <span class="md-ellipsis">
+      Important: Your Azure resources should be created in the same location!
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-an-azure-ai-search-resource" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create an Azure AI Search resource
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-a-storage-account" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create a storage account
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#upload-documents-to-azure-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Upload documents to Azure Storage
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Upload documents to Azure Storage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#note-unless-you-enabled-the-option-to-allow-anonymous-container-access-when-creating-your-storage-account-you-wont-be-able-to-select-any-other-setting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Note: *Unless you enabled the option to allow anonymous container access when creating your storage account, you won’t be able to select any other setting!
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-and-run-an-indexer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create and run an indexer
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Create and run an indexer">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#note-the-free-azure-ai-services-resource-for-azure-ai-search-can-be-used-to-index-a-maximum-of-20-documents-in-a-real-solution-you-should-create-an-azure-ai-services-resource-in-your-subscription-to-enable-ai-enrichment-for-a-larger-number-of-documents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Note: *The free Azure AI Services resource for Azure AI Search can be used to index a maximum of 20 documents. In a real solution, you should create an Azure AI Services resource in your subscription to enable AI enrichment for a larger number of documents.
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#search-the-index" class="md-nav__link">
+    <span class="md-ellipsis">
+      Search the index
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-a-search-client-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create a search client application
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Create a search client application">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-the-endpoint-and-keys-for-your-search-resource" class="md-nav__link">
+    <span class="md-ellipsis">
+      Get the endpoint and keys for your search resource
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prepare-to-use-the-azure-ai-search-sdk" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prepare to use the Azure AI Search SDK
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#view-the-knowledge-store" class="md-nav__link">
+    <span class="md-ellipsis">
+      View the knowledge store
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="View the knowledge store">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#view-object-projections" class="md-nav__link">
+    <span class="md-ellipsis">
+      View object projections
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#view-file-projections" class="md-nav__link">
+    <span class="md-ellipsis">
+      View file projections
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#view-table-projections" class="md-nav__link">
+    <span class="md-ellipsis">
+      View table projections
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#clean-up" class="md-nav__link">
+    <span class="md-ellipsis">
+      Clean-up
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../learn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Learn
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    07 develop generative ai solutions with azure openai in foundry models
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            07 develop generative ai solutions with azure openai in foundry models
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_1" id="__nav_8_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    01 develop applications with azure OpenAI in Foundry models
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_1">
+            <span class="md-nav__icon md-icon"></span>
+            01 develop applications with azure OpenAI in Foundry models
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../07-develop-generative-ai-solutions-with-azure-openai-in-foundry-models/01-develop_applications_with_azure_OpenAI_in_Foundry_models/exercise/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    📅 AI-102 Study Guide — Application Development with Azure OpenAI
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../07-develop-generative-ai-solutions-with-azure-openai-in-foundry-models/01-develop_applications_with_azure_OpenAI_in_Foundry_models/learn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Azure OpenAI - Complete Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_2" id="__nav_8_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    02 generate images with ai
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_2">
+            <span class="md-nav__icon md-icon"></span>
+            02 generate images with ai
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../07-develop-generative-ai-solutions-with-azure-openai-in-foundry-models/02-generate_images_with_ai/exercise/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Generate Images with AI
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../07-develop-generative-ai-solutions-with-azure-openai-in-foundry-models/02-generate_images_with_ai/learn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🧩 AI-102 Study Card – Image Generation with Azure AI Foundry (DALL-E)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_3" id="__nav_8_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    03 implement retrieval augmented generation (RAG) with Azure OpenAI models
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_3">
+            <span class="md-nav__icon md-icon"></span>
+            03 implement retrieval augmented generation (RAG) with Azure OpenAI models
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../07-develop-generative-ai-solutions-with-azure-openai-in-foundry-models/03-implement_retrieval_augmented_generation_%28RAG%29_with_Azure_OpenAI_models/exercise/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🧩 RAG Implementation with Azure OpenAI and Azure AI Search
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../07-develop-generative-ai-solutions-with-azure-openai-in-foundry-models/03-implement_retrieval_augmented_generation_%28RAG%29_with_Azure_OpenAI_models/learn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Implement Retrieval Augmented Generation (RAG) with Azure OpenAI Models
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#create-azure-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create Azure resources
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Create Azure resources">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#important-your-azure-resources-should-be-created-in-the-same-location" class="md-nav__link">
+    <span class="md-ellipsis">
+      Important: Your Azure resources should be created in the same location!
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-an-azure-ai-search-resource" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create an Azure AI Search resource
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-a-storage-account" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create a storage account
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#upload-documents-to-azure-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Upload documents to Azure Storage
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Upload documents to Azure Storage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#note-unless-you-enabled-the-option-to-allow-anonymous-container-access-when-creating-your-storage-account-you-wont-be-able-to-select-any-other-setting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Note: *Unless you enabled the option to allow anonymous container access when creating your storage account, you won’t be able to select any other setting!
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-and-run-an-indexer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create and run an indexer
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Create and run an indexer">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#note-the-free-azure-ai-services-resource-for-azure-ai-search-can-be-used-to-index-a-maximum-of-20-documents-in-a-real-solution-you-should-create-an-azure-ai-services-resource-in-your-subscription-to-enable-ai-enrichment-for-a-larger-number-of-documents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Note: *The free Azure AI Services resource for Azure AI Search can be used to index a maximum of 20 documents. In a real solution, you should create an Azure AI Services resource in your subscription to enable AI enrichment for a larger number of documents.
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#search-the-index" class="md-nav__link">
+    <span class="md-ellipsis">
+      Search the index
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-a-search-client-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create a search client application
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Create a search client application">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-the-endpoint-and-keys-for-your-search-resource" class="md-nav__link">
+    <span class="md-ellipsis">
+      Get the endpoint and keys for your search resource
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prepare-to-use-the-azure-ai-search-sdk" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prepare to use the Azure AI Search SDK
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#view-the-knowledge-store" class="md-nav__link">
+    <span class="md-ellipsis">
+      View the knowledge store
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="View the knowledge store">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#view-object-projections" class="md-nav__link">
+    <span class="md-ellipsis">
+      View object projections
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#view-file-projections" class="md-nav__link">
+    <span class="md-ellipsis">
+      View file projections
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#view-table-projections" class="md-nav__link">
+    <span class="md-ellipsis">
+      View table projections
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#clean-up" class="md-nav__link">
+    <span class="md-ellipsis">
+      Clean-up
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="create-a-knowledge-mining-solution">Create a knowledge mining solution</h1>
+<p>In this exercise, you use AI Search to index a set of documents maintained by Margie’s Travel, a fictional travel agency. The indexing process involves using AI skills to extract key information to make them searchable, and generating a knowledge store containing data assets for further analysis.</p>
+<p>This exercise takes approximately 40 minutes.</p>
+<h2 id="create-azure-resources">Create Azure resources</h2>
+<p>The solution you will create for Margie’s Travel requires multiple resources in your Azure subscription. In this exercise, you’ll create them directly in the Azure portal. You could also create them by using a script, or an ARM or BICEP template; or you could create an Azure AI Foundry project that includes an Azure AI Search resource.</p>
+<h3 id="important-your-azure-resources-should-be-created-in-the-same-location">Important: Your Azure resources should be created in the same location!</h3>
+<h2 id="create-an-azure-ai-search-resource">Create an Azure AI Search resource</h2>
+<ol>
+<li>In a web browser, open the Azure portal at https://portal.azure.com, and sign in using your Azure credentials.</li>
+<li>Select the ＋Create a resource button, search for Azure AI Search, and create an Azure AI Search resource with the following settings:<ul>
+<li>Subscription: Your Azure subscription</li>
+<li>Resource group: Create or select a resource group</li>
+<li>Service name: A valid name for your search resource</li>
+<li>Location: Any available location</li>
+<li>Pricing tier: Free</li>
+</ul>
+</li>
+<li>Wait for deployment to complete, and then go to the deployed resource.</li>
+<li>Review the Overview page on the blade for your Azure AI Search resource in the Azure portal. Here, you can use a visual interface to create, test, manage, and monitor the various components of a search solution; including data sources, indexes, indexers, and skillsets.</li>
+</ol>
+<h2 id="create-a-storage-account">Create a storage account</h2>
+<ol>
+<li>Return to the home page, and then create a Storage account resource with the following settings:<ul>
+<li>Subscription: Your Azure subscription</li>
+<li>Resource group: The same resource group as your Azure AI Search and Azure AI Services resources</li>
+<li>Storage account name: A valid name for your storage resource</li>
+<li>Region: The same region as your Azure AI Search resource</li>
+<li>Primary service: Azure Blob Storage or Azure Data Lake Storage Gen 2</li>
+<li>Performance: Standard</li>
+<li>Redundancy: Locally-redundant storage (LRS)</li>
+</ul>
+</li>
+<li>Wait for deployment to complete, and then go to the deployed resource.</li>
+</ol>
+<h2 id="upload-documents-to-azure-storage">Upload documents to Azure Storage</h2>
+<p>Your knowledge mining solution will extract information from travel brochure documents in an Azure Storage blob container.</p>
+<ol>
+<li>In a new browser tab, download documents.zip from https://github.com/microsoftlearning/mslearn-ai-information-extraction/raw/main/Labfiles/knowledge/documents.zip and save it in a local folder.</li>
+<li>Extract the downloaded documents.zip file and view the travel brochure files it contains. You’ll extract and index information from these files.</li>
+<li>In the browser tab containing the Azure portal page for your storage account, in the navigation pane on the left, select Storage browser.</li>
+<li>In the storage browser, select Blob containers.</li>
+</ol>
+<p>Currently, your storage account should contain only the default $logs container.</p>
+<ol>
+<li>In the toolbar, select + Container and create a new container with the following settings:<ul>
+<li>Name: documents</li>
+<li>Anonymous access level: Private (no anonymous access)*</li>
+</ul>
+</li>
+</ol>
+<h3 id="note-unless-you-enabled-the-option-to-allow-anonymous-container-access-when-creating-your-storage-account-you-wont-be-able-to-select-any-other-setting">Note: *Unless you enabled the option to allow anonymous container access when creating your storage account, you won’t be able to select any other setting!</h3>
+<ol>
+<li>Select the documents container to open it, and then use the Upload toolbar button to upload the .pdf files you extracted from documents.zip previously into the root of the container, as shown here:</li>
+</ol>
+<h2 id="create-and-run-an-indexer">Create and run an indexer</h2>
+<p>Now that you have the documents in place, you can create an indexer to extract information from them.</p>
+<ol>
+<li>In the Azure portal, browse to your Azure AI Search resource. Then, on its Overview page, select Import data.</li>
+<li>On the Connect to your data page, in the Data Source list, select Azure Blob Storage. Then complete the data store details with the following values:</li>
+<li>Data Source: Azure Blob Storage</li>
+<li>Data source name: margies-documents</li>
+<li>Data to extract: Content and metadata</li>
+<li>Parsing mode: Default</li>
+<li>Subscription: Your Azure subscription</li>
+<li>Connection string:<ul>
+<li>Select Choose an existing connection</li>
+<li>Select your storage account</li>
+<li>Select the documents container</li>
+</ul>
+</li>
+<li>Managed identity authentication: None</li>
+<li>Container name: documents</li>
+<li>Blob folder: Leave this blank</li>
+<li>Description: Travel brochures</li>
+<li>Proceed to the next step (Add cognitive skills), which has three expandable sections to complete.</li>
+<li>In the Attach Azure AI Services section, select Free (limited enrichments)*.</li>
+</ol>
+<h3 id="note-the-free-azure-ai-services-resource-for-azure-ai-search-can-be-used-to-index-a-maximum-of-20-documents-in-a-real-solution-you-should-create-an-azure-ai-services-resource-in-your-subscription-to-enable-ai-enrichment-for-a-larger-number-of-documents">Note: *The free Azure AI Services resource for Azure AI Search can be used to index a maximum of 20 documents. In a real solution, you should create an Azure AI Services resource in your subscription to enable AI enrichment for a larger number of documents.</h3>
+<ol>
+<li>
+<p>In the Add enrichments section:</p>
+<ul>
+<li>Change the Skillset name to margies-skillset.</li>
+<li>Select the option Enable OCR and merge all text into merged_content field.</li>
+<li>Ensure that the Source data field is set to merged_content.</li>
+<li>Leave the Enrichment granularity level as Source field, which is set the entire contents of the document being indexed; but note that you can change this to extract information at more granular levels, like pages or sentences.</li>
+<li>Select the following enriched fields:
+    Cognitive Skill             Parameter   Field name
+    Text Cognitive Skills      <br />
+    Extract people names                    people
+    Extract location names                  locations
+    Extract key phrases                     keyphrases
+    Image Cognitive Skills     <br />
+    Generate tags from images               imageTags
+    Generate captions from images           imageCaption</li>
+</ul>
+</li>
+<li>
+<p>In the Save enrichments to a knowledge store section:</p>
+<ul>
+<li>Select only the following checkboxes (an error will be displayed, you’ll resolve that shortly):<ul>
+<li>Azure file projections:<ul>
+<li>Image projections:</li>
+</ul>
+</li>
+<li>Azure table projections:<ul>
+<li>Documents<ul>
+<li>Key phrases</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Azure blob projections:<ul>
+<li>Document</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Under Storage account connection string (beneath the error messages):<ul>
+<li>Select Choose an existing connection</li>
+<li>Select your storage account</li>
+<li>Select the documents container (this is only required to select the storage account in the browse interface - you’ll specify a different container name for the extracted knowledge assets!)</li>
+<li>Change the Container name to knowledge-store.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Proceed to the next step (Customize target index), where you’ll specify the fields for your index.</p>
+</li>
+<li>Change the Index name to margies-index.</li>
+<li>Ensure that the Key is set to metadata_storage_path, leave the Suggester name blank, and ensure Search mode is analyzingInfixMatching.</li>
+<li>Make the following changes to the index fields, leaving all other fields with their default settings (IMPORTANT: you may need to scroll to the right to see the entire table):</li>
+</ol>
+<p>Field name                      Retrievable     Filterable      Sortable    Facetable   Searchable
+metadata_storage_size           ✔               ✔               ✔      <br />
+metadata_storage_last_modified  ✔               ✔               ✔      <br />
+metadata_storage_name           ✔               ✔               ✔                       ✔
+locations                       ✔               ✔                                       ✔
+people                          ✔               ✔                                       ✔
+keyphrases                      ✔               ✔                                       ✔</p>
+<p>Double-check your selections, paying particular attention to ensure that the correct Retrievable, Filterable, Sortable, Facetable, and Searchable options are selected correctly for each field (it can be difficult to change them later).</p>
+<ol>
+<li>Proceed to the next step (Create an indexer), where you’ll create and schedule the indexer.</li>
+<li>Change the Indexer name to margies-indexer.</li>
+<li>Leave the Schedule set to Once.</li>
+<li>Select Submit to create the data source, skillset, index, and indexer. The indexer is run automatically and runs the indexing pipeline, which:<ul>
+<li>Extracts the document metadata fields and content from the data source</li>
+<li>Runs the skillset of cognitive skills to generate additional enriched fields</li>
+<li>Maps the extracted fields to the index.</li>
+<li>Saves the extracted data assets to the knowledge store.</li>
+</ul>
+</li>
+<li>In the navigation pane on the left, under Search management view the Indexers page, which should show the newly created margies-indexer. Wait a few minutes, and click &orarr; Refresh until the Status indicates Success.</li>
+</ol>
+<h2 id="search-the-index">Search the index</h2>
+<p>Now that you have an index, you can search it.</p>
+<ol>
+<li>Return to the Overview page for your Azure AI Search resource, and on the toolbar, select Search explorer.</li>
+<li>In Search explorer, in the Query string box, enter * (a single asterisk), and then select Search.</li>
+</ol>
+<p>This query retrieves all documents in the index in JSON format. Examine the results and note the fields for each document, which contain document content, metadata, and enriched data extracted by the cognitive skills you selected.</p>
+<ol>
+<li>In the View menu, select JSON view and note that the JSON request for the search is shown, like this:</li>
+</ol>
+<p><div class="language-json highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">{</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="nt">&quot;search&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;*&quot;</span><span class="p">,</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="nt">&quot;count&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="p">}</span>
+</span></code></pre></div>
+4. The results include a @odata.count field at the top of the results that indicates the number of documents returned by the search.</p>
+<ol>
+<li>
+<p>Modify the JSON request to include the select parameter as shown here:
+<div class="language-json highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">{</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="nt">&quot;search&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;*&quot;</span><span class="p">,</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="nt">&quot;count&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="nt">&quot;select&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">&quot;metadata_storage_name,locations</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="err">}</span>
+</span></code></pre></div>
+This time the results include only the file name and any locations mentioned in the document content. The file name is in the metadata_storage_name field, which was extracted from the source document. The locations field was generated by an AI skill.</p>
+</li>
+<li>
+<p>Now try the following query string:</p>
+</li>
+</ol>
+<p><div class="language-json highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="p">{</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="nt">&quot;search&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;*&quot;</span><span class="p">,</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="nt">&quot;count&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="nt">&quot;select&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;metadata_storage_name,keyphrases&quot;</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="p">}</span>
+</span></code></pre></div>
+7. Now try the following query string:
+<div class="language-json highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="p">{</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">   </span><span class="nt">&quot;search&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;New York&quot;</span><span class="p">,</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">   </span><span class="nt">&quot;count&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">   </span><span class="nt">&quot;select&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;metadata_storage_name,keyphrases&quot;</span><span class="p">,</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">   </span><span class="nt">&quot;filter&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;metadata_storage_size lt 380000&quot;</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="p">}</span>
+</span></code></pre></div>
+This query returns the filename and key phrases for any documents mentioning “New York” that are smaller than 380,000 bytes in size.</p>
+<h2 id="create-a-search-client-application">Create a search client application</h2>
+<p>Now that you have a useful index, you can use it from a client application. You can do this by consuming the REST interface, submitting requests and receiving responses in JSON format over HTTP; or you can use the software development kit (SDK) for your preferred programming language. In this exercise, we’ll use the SDK.</p>
+<p>Note: You can choose to use the SDK for either C# or Python. In the steps below, perform the actions appropriate for your preferred language.</p>
+<h3 id="get-the-endpoint-and-keys-for-your-search-resource">Get the endpoint and keys for your search resource</h3>
+<ol>
+<li>In the Azure portal, close the search explorer page and return to the Overview page for your Azure AI Search resource.</li>
+</ol>
+<p>Note the Url value, which should be similar to https://your_resource_name.search.windows.net. This is the endpoint for your search resource.</p>
+<ol>
+<li>In the navigation pane on the left, expand Settings and view the Keys page.</li>
+</ol>
+<p>Note that there are two admin keys, and a single query key. An admin key is used to create and manage search resources; a query key is used by client applications that only need to perform search queries.</p>
+<p>You will need the endpoint and query key for your client application.</p>
+<h2 id="prepare-to-use-the-azure-ai-search-sdk">Prepare to use the Azure AI Search SDK</h2>
+<ol>
+<li>Use the [&gt;_] button to the right of the search bar at the top of the Azure portal to create a new Cloud Shell in the Azure portal, selecting a PowerShell environment with no storage in your subscription.</li>
+</ol>
+<p>The cloud shell provides a command-line interface in a pane at the bottom of the Azure portal. You can resize or maximize this pane to make it easier to work in. Initially, you’ll need to see both the cloud shell and the Azure portal (so you can find and copy the endpoint and key you’ll need).</p>
+<ol>
+<li>In the cloud shell toolbar, in the Settings menu, select Go to Classic version (this is required to use the code editor).</li>
+</ol>
+<p>Ensure you've switched to the classic version of the cloud shell before continuing.</p>
+<ol>
+<li>In the cloud shell pane, enter the following commands to clone the GitHub repo containing the code files for this exercise (type the command, or copy it to the clipboard and then right-click in the command line and paste as plain text):
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>rm<span class="w"> </span>-r<span class="w"> </span>mslearn-ai-info<span class="w"> </span>-f
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/microsoftlearning/mslearn-ai-information-extraction<span class="w"> </span>mslearn-ai-info
+</span></code></pre></div></li>
+<li>After the repo has been cloned, navigate to the folder containing the code files for your preferred programming language:</li>
+</ol>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">cd</span> <span class="n">mslearn</span><span class="o">-</span><span class="n">ai</span><span class="o">-</span><span class="n">info</span><span class="o">/</span><span class="n">Labfiles</span><span class="o">/</span><span class="n">knowledge</span><span class="o">/</span><span class="n">python</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">ls</span> <span class="o">-</span><span class="n">a</span> <span class="o">-</span><span class="n">l</span>
+</span></code></pre></div>
+<ol>
+<li>Install the Azure AI Search SDK and Azure identity packages by running the appropriate commands for your language preference:</li>
+</ol>
+<p><div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">venv</span> <span class="n">labenv</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="o">./</span><span class="n">labenv</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">Activate</span><span class="o">.</span><span class="n">ps1</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span> <span class="n">azure</span><span class="o">-</span><span class="n">identity</span> <span class="n">azure</span><span class="o">-</span><span class="n">search</span><span class="o">-</span><span class="n">documents</span><span class="o">==</span><span class="mf">11.5.1</span>
+</span></code></pre></div>
+6. Run the following command to edit the configuration file for your app:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>code<span class="w"> </span>.env
+</span></code></pre></div>
+7. Edit the configuration file to replace the following placeholder values:</p>
+<ul>
+<li>your_search_endpoint (replace with the endpoint for your Azure AI Search resource)</li>
+<li>your_query_key (replace with the query key for your Azure AI Search resource)</li>
+<li>
+<p>your_index_name (replace with the name of your index, which should be margies-index)</p>
+</li>
+<li>
+<p>When you’ve updated the placeholders, use the CTRL+S command to save the file and then use the CTRL+Q command to close it.</p>
+</li>
+<li>
+<p>Run the following command to open the code file for your app:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>code<span class="w"> </span>search-app.py
+</span></code></pre></div></p>
+</li>
+<li>
+<p>Review the code, and note that it performs the following actions:</p>
+</li>
+<li>
+<p>Retrieves the configuration settings for your Azure AI Search resource and index from the configuration file you edited.</p>
+</li>
+<li>Creates a SearchClient with the endpoint, key, and index name to connect to your search service.</li>
+<li>Prompts the user for a search query (until they enter “quit”)</li>
+<li>Searches the index using the query, returning the following fields (ordered by metadata_storage_name):<ul>
+<li>metadata_storage_name</li>
+<li>locations</li>
+<li>people</li>
+<li>keyphrases</li>
+</ul>
+</li>
+<li>
+<p>Parses the search results that are returned to display the fields returned for each document in the result set.</p>
+</li>
+<li>
+<p>Close the code editor pane (CTRL+Q), keeping the cloud shell command line console pane open</p>
+</li>
+<li>
+<p>Enter the following command to run the app:</p>
+</li>
+</ul>
+<p><div class="language-console highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="go">python search-app.py</span>
+</span></code></pre></div>
+13. When prompted, enter a query such as London and view the results.
+14. Try another query, such as flights.
+15. When you’re finished testing the app, enter quit to close it.
+16. Close the Cloud shell, returning to the Azure portal.</p>
+<h2 id="view-the-knowledge-store">View the knowledge store</h2>
+<p>After you have run an indexer that uses a skillset to create a knowledge store, the enriched data extracted by the indexing process is persisted in the knowledge store projections.</p>
+<h3 id="view-object-projections">View object projections</h3>
+<p>The object projections defined in the Margie’s Travel skillset consist of a JSON file for each indexed document. These files are stored in a blob container in the Azure Storage account specified in the skillset definition.</p>
+<ol>
+<li>In the Azure portal, view the Azure Storage account you created previously.</li>
+<li>Select the Storage browser tab (in the pane on the left) to view the storage account in the storage explorer interface in the Azure portal.</li>
+<li>Expand Blob containers to view the containers in the storage account. In addition to the documents container where the source data is stored, there should be two new containers: knowledge-store and margies-skillset-image-projection. These were created by the indexing process.</li>
+<li>Select the knowledge-store container. It should contain a folder for each indexed document.</li>
+<li>Open any of the folders, and then select the objectprojection.json file it contains and use the Download button on the toolbar to download and open it. Each JSON file contains a representation of an indexed document, including the enriched data extracted by the skillset as shown here (formatted to make it easier to read).</li>
+</ol>
+<p><div class="language-json highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">     </span><span class="nt">&quot;metadata_storage_content_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;application/pdf&quot;</span><span class="p">,</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">     </span><span class="nt">&quot;metadata_storage_size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">388622</span><span class="p">,</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">     </span><span class="nt">&quot;&lt;more_metadata_fields&gt;&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="p">,</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">     </span><span class="nt">&quot;key_phrases&quot;</span><span class="p">:[</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="w">         </span><span class="s2">&quot;Margie’s Travel&quot;</span><span class="p">,</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="w">         </span><span class="s2">&quot;Margie&#39;s Travel&quot;</span><span class="p">,</span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="w">         </span><span class="s2">&quot;best travel experts&quot;</span><span class="p">,</span>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="w">         </span><span class="s2">&quot;world-leading travel agency&quot;</span><span class="p">,</span>
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="w">         </span><span class="s2">&quot;international reach&quot;</span>
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="w">         </span><span class="p">],</span>
+</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a><span class="w">     </span><span class="nt">&quot;locations&quot;</span><span class="p">:[</span>
+</span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a><span class="w">         </span><span class="s2">&quot;Dubai&quot;</span><span class="p">,</span>
+</span><span id="__span-10-14"><a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a><span class="w">         </span><span class="s2">&quot;Las Vegas&quot;</span><span class="p">,</span>
+</span><span id="__span-10-15"><a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a><span class="w">         </span><span class="s2">&quot;London&quot;</span><span class="p">,</span>
+</span><span id="__span-10-16"><a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a><span class="w">         </span><span class="s2">&quot;New York&quot;</span><span class="p">,</span>
+</span><span id="__span-10-17"><a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a><span class="w">         </span><span class="s2">&quot;San Francisco&quot;</span>
+</span><span id="__span-10-18"><a id="__codelineno-10-18" name="__codelineno-10-18" href="#__codelineno-10-18"></a><span class="w">         </span><span class="p">],</span>
+</span><span id="__span-10-19"><a id="__codelineno-10-19" name="__codelineno-10-19" href="#__codelineno-10-19"></a><span class="w">     </span><span class="nt">&quot;image_tags&quot;</span><span class="p">:[</span>
+</span><span id="__span-10-20"><a id="__codelineno-10-20" name="__codelineno-10-20" href="#__codelineno-10-20"></a><span class="w">         </span><span class="s2">&quot;outdoor&quot;</span><span class="p">,</span>
+</span><span id="__span-10-21"><a id="__codelineno-10-21" name="__codelineno-10-21" href="#__codelineno-10-21"></a><span class="w">         </span><span class="s2">&quot;tree&quot;</span><span class="p">,</span>
+</span><span id="__span-10-22"><a id="__codelineno-10-22" name="__codelineno-10-22" href="#__codelineno-10-22"></a><span class="w">         </span><span class="s2">&quot;plant&quot;</span><span class="p">,</span>
+</span><span id="__span-10-23"><a id="__codelineno-10-23" name="__codelineno-10-23" href="#__codelineno-10-23"></a><span class="w">         </span><span class="s2">&quot;palm&quot;</span>
+</span><span id="__span-10-24"><a id="__codelineno-10-24" name="__codelineno-10-24" href="#__codelineno-10-24"></a><span class="w">         </span><span class="p">],</span>
+</span><span id="__span-10-25"><a id="__codelineno-10-25" name="__codelineno-10-25" href="#__codelineno-10-25"></a><span class="w">     </span><span class="nt">&quot;more fields&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span>
+</span><span id="__span-10-26"><a id="__codelineno-10-26" name="__codelineno-10-26" href="#__codelineno-10-26"></a><span class="w"> </span><span class="p">}</span>
+</span></code></pre></div>
+The ability to create object projections like this enables you to generate enriched data objects that can be incorporated into an enterprise data analysis solution.</p>
+<h3 id="view-file-projections">View file projections</h3>
+<p>The file projections defined in the skillset create JPEG files for each image that was extracted from the documents during the indexing process.</p>
+<ol>
+<li>In the Storage browser interface in the Azure portal, select the margies-skillset-image-projection blob container. This container contains a folder for each document that contained images.</li>
+<li>Open any of the folders and view its contents - each folder contains at least one *.jpg file.</li>
+<li>Open any of the image files, and download and view it to see the image.
+The ability to generate file projections like this makes indexing an efficient way to extract embedded images from a large volume of documents.</li>
+</ol>
+<h3 id="view-table-projections">View table projections</h3>
+<p>The table projections defined in the skillset form a relational schema of enriched data.</p>
+<ol>
+<li>In the Storage browser interface in the Azure portal, expand Tables.</li>
+<li>Select the margiesSkillsetDocument table to view data. This table contains a row for each document that was indexed:</li>
+<li>View the margiesSkillsetKeyPhrases table, which contains a row for each key phrase extracted from the documents.</li>
+</ol>
+<p>The ability to create table projections enables you to build analytical and reporting solutions that query a relational schema. The automatically generated key columns can be used to join the tables in queries - for example to return all of the key phrases extracted from a specific document.</p>
+<h2 id="clean-up">Clean-up</h2>
+<p>Now that you’ve completed the exercise, delete all the resources you no longer need. Delete the Azure resources:</p>
+<ol>
+<li>In the Azure portal, select Resource groups.</li>
+<li>Select the resource group you don’t need, then select Delete resource group.</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+    
+  </body>
+</html>
