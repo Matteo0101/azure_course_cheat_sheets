@@ -1,0 +1,10 @@
+[project]
+name = "azure-course-cheet-sheets"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "mkdocs-exclude>=1.0.2",
+    "mkdocs-material>=9.6.14",
+]
