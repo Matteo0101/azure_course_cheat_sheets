@@ -19,6 +19,15 @@ theme:
               icon: material/weather-sunny
               name: Switch to light mode
 
+plugins:
+    - exclude:
+          glob:
+              - "**exercise/*"
+              - "*.py"
+              - "*.png"
+              - "*.jpg"
+              - "*.jpeg"
+
 markdown_extensions:
     - attr_list
     - pymdownx.emoji:
