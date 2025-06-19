@@ -1,4 +1,4 @@
-# Detect and Analyze Faces
+# [Detect and Analyze Faces](https://microsoftlearning.github.io/mslearn-ai-vision/Instructions/Labs/03-face-service.html)
 
 The ability to detect and analyze human faces is a core AI capability. In this exercise, you’ll explore the Azure AI Vision service and the Face service to work with faces in images.
 
