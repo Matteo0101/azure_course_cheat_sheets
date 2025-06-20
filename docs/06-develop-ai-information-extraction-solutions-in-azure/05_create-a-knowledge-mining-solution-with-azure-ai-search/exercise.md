@@ -105,13 +105,15 @@ Now that you have the documents in place, you can create an indexer to extract i
 9. Ensure that the Key is set to metadata_storage_path, leave the Suggester name blank, and ensure Search mode is analyzingInfixMatching.
 10. Make the following changes to the index fields, leaving all other fields with their default settings (IMPORTANT: you may need to scroll to the right to see the entire table):
 
-Field name	                    Retrievable	    Filterable	    Sortable	Facetable	Searchable
-metadata_storage_size	        ✔	            ✔	            ✔	 	 
-metadata_storage_last_modified	✔	            ✔	            ✔	 	 
-metadata_storage_name	        ✔	            ✔	            ✔	 	                ✔
-locations	                    ✔	            ✔	 	 	                            ✔
-people	                        ✔	            ✔	 	 	                            ✔
-keyphrases	                    ✔	            ✔	 	 	                            ✔
+Field name	                  |  Retrievable	  |  Filterable	 |   Sortable|	Facetable	|Searchable
+---------------------------|----------------|---------------|-----------|-------------|-----------
+metadata_storage_path	      |  ✔	          |  ✔	        |    ✔	 	|
+metadata_storage_size	      |  ✔	          |  ✔	        |    ✔	 	|              |
+metadata_storage_last_modified|	✔	          |  ✔	        |    ✔	 	|              |
+metadata_storage_name	        |  ✔	          |  ✔	        |    ✔	 	|              |✔
+locations	                    |  ✔	          |  ✔	 	 	|           |              |✔
+people	                        |  ✔	          |  ✔	 	 	|           |              |✔
+keyphrases	                    |  ✔	          |  ✔	 	 	|           |              |✔
 
 Double-check your selections, paying particular attention to ensure that the correct Retrievable, Filterable, Sortable, Facetable, and Searchable options are selected correctly for each field (it can be difficult to change them later).
 
